@@ -1,0 +1,4 @@
+--lua-init=fake_default_tls=tls_mod(fake_default_tls,'rnd') --payload=tls_client_hello --lua-desync=fake:blob=fake_default_tls:tls_mod=rnd,sni=www.google.com:strategy=1
+--lua-init=fake_default_tls=tls_mod(fake_default_tls,'rnd') --payload=tls_client_hello --lua-desync=fake:blob=blob_tls_clienthello_www_google_com:tls_mod=rnd,sni=www.google.com:strategy=2
+--lua-desync=fake:blob=blob_tls_clienthello_www_google_com:tls_mod=rnd,dupsid,sni=www.google.com:strategy=3
+--lua-desync=multisplit:pos=2,sld:seqovl=620:seqovl_pattern=blob_tls_clienthello_www_google_com:strategy=4

@@ -1,0 +1,1 @@
+--filter-tcp=80,443 <HOSTLIST> --lua-init=fake_default_tls=tls_mod(fake_default_tls,'rnd') --payload=tls_client_hello --lua-desync=fake:blob=blob_tls_yaplakal2_android:badsum:tcp_seq=-10000:strategy=1 --lua-desync=multisplit:pos=1:seqovl=664:seqovl_pattern=blob_tls_yaplakal2_android:strategy=1

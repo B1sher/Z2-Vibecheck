@@ -12,7 +12,9 @@ PURPLE="\033[38;2;139;92;246m"
 
 echo ""
 printf "${PURPLE}${C_BOLD}"
-printf "              ═══ Z2💜VIBECHECK SETUP ═══                  \n"
+printf "╔══════════════════════════════════════════════════════════╗\n"
+printf "║                    Z2💜VIBECHECK SETUP                    ║\n"
+printf "╚══════════════════════════════════════════════════════════╝\n"
 printf "${C_RESET}\n"
 
 printf "${YELLOW}[1/5] Скачивание репозитория...${C_RESET}\n"
@@ -27,6 +29,8 @@ cp -r Z2-Vibecheck-main/Z2Vibecheck.sh /opt/Z2Vibecheck/
 cp -r Z2-Vibecheck-main/config /opt/Z2Vibecheck/
 cp -r Z2-Vibecheck-main/strategies /opt/Z2Vibecheck/
 cp -r Z2-Vibecheck-main/lib /opt/Z2Vibecheck/
+chmod +x /opt/Z2Vibecheck/Z2Vibecheck.sh
+chmod +x /opt/Z2Vibecheck/lib/*.sh 2>/dev/null
 printf "${GREEN}  └─ Файлы скопированы ✓${C_RESET}\n\n"
 
 printf "${YELLOW}[3/5] Установка blockcheckw...${C_RESET}\n"
@@ -42,14 +46,8 @@ printf "${YELLOW}[5/5] Применение стратегий...${C_RESET}\n"
 sh Z2-Vibecheck-main/install/install.sh > /dev/null 2>&1
 printf "${GREEN}  └─ Стратегии применены ✓${C_RESET}\n\n"
 
-# Права
-chmod +x /opt/Z2Vibecheck/Z2Vibecheck.sh
-chmod +x /opt/Z2Vibecheck/lib/*.sh 2>/dev/null
-
-# Симлинк
 ln -sf /opt/Z2Vibecheck/Z2Vibecheck.sh /usr/bin/Z2Vibecheck
 
-# Очистка
 rm -rf Z2-Vibecheck-main
 rm -f Z2Vibecheck.tar.gz
 

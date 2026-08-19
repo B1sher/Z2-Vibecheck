@@ -1,3 +1,7 @@
+# НИКОГДА не пушить
+setup-token.bat
+push-rules.bat
+
 # Локальные данные
 var/
 bin/

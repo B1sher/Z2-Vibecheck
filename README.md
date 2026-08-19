@@ -2,36 +2,40 @@
 
 Автоматический подбор DPI-bypass стратегий для **Zapret2** на OpenWrt.
 
-Поверх существующего `remittor/zapret-openwrt` добавляет automation layer:
+Поверх существующего `remittor/zapret-openwrt` добавляет автоматизацию:
 - 🔍 Автопоиск стратегий через `blockcheckw`
 - ✅ Проверка доступности доменов
 - 🔄 Пост-проверка топ-33 стратегий для каждого домена
 - 💾 Backup / rollback / last-good
-- 🔌 Управление Nikki/Podkop прокси
-- 🎨 Цветное меню
+- 🔌 Автоматическое управление Nikki/Podkop  
+>(выключает перед проверкой, включает после — только если были запущены)
+- ➕ Свои кастомные домены для проверки
+- ⚡ Автоматически вносит рабочую стратегию в Zapret2
+- 🚫 Не перепроверяет домены с рабочей стратегией
+- ⏰ Автоматическая проверка по расписанию (ежедневно / еженедельно)
 
 ---
 
 ## Требования
 
-- **OpenWrt** (или Linux) с установленным **Zapret2**
-- **blockcheckw** (устанавливается автоматически)
-- **Nikki/Podkop** (опционально — для прокси)
-- root-доступ
+- Сначала установить `remittor/zapret-openwrt` Zapret2:
+```sh
+curl -fsSL https://raw.githubusercontent.com/remittor/zapret-openwrt/zap1/zapret/update-pkg.sh -o /tmp/zap.sh && sh /tmp/zap.sh -u 2
+```   
 
 ---
 
-## Установка
+## Установка Z2💜Vibecheck
 
 ```sh
-# 1. Скопировать файлы в /opt/Z2Vibecheck/
-# 2. Установить blockcheckw:
-sh /opt/Z2Vibecheck/install/install-blockcheckw.sh
+curl -fsSL https://raw.githubusercontent.com/B1sher/Z2-Vibecheck/main/setup.sh -o /tmp/setup.sh && sh /tmp/setup.sh
+```
 
-# 3. Применить дефолтные стратегии:
-sh /opt/Z2Vibecheck/install/install.sh
+---
 
-# 4. Запустить:
+## Запуск
+
+```sh
 Z2Vibecheck
 ```
 
@@ -118,7 +122,7 @@ githubusercontent.com
   ↓
 [5/6] Применение + пост-проверка (перебор до рабочей)
   ↓
-[6/6] Восстановление прокси
+[6/6] Восстановление прокси и DNS
 ```
 
 ---
@@ -141,21 +145,22 @@ githubusercontent.com
 
 ### Честная проверка
 
-- Nikki/Podkop останавливаются перед тестом
+- Nikki/Podkop останавливаются перед тестом (только если были запущены)
 - DNS переключается на 8.8.8.8 / 1.1.1.1
 - Zapret2 останавливается перед сканированием
+- В конце — восстановление только того, что было запущено
 
 ### Пост-проверка
 
 Каждая стратегия проверяется реальным curl-запросом.
 Перебираются топ-33, пока не найдётся рабочая.
+Если для домена стратегия уже рабочая — повторная проверка не выполняется.
 
 ---
 
 ## Кастомные стратегии
 
-Файлы в `strategies/` содержат конвертированные zapret1-стратегии:
-
+Файлы в `strategies/` содержат кастомные, базовые стратегии:
 ### YouTube
 
 ```
@@ -167,6 +172,12 @@ githubusercontent.com
 ```
 --filter-tcp=80,443 --lua-desync=fake:blob=blob_tls_clienthello_max_ru:repeats=8
 --filter-udp=443 --lua-desync=fake:blob=quic_Ori_New:repeats=11
+```
+
+### Autohostlist (универсальная для остального)
+
+```
+
 ```
 
 ---

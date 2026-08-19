@@ -12,9 +12,7 @@ PURPLE="\033[38;2;139;92;246m"
 
 echo ""
 printf "${PURPLE}${C_BOLD}"
-printf "╔══════════════════════════════════════════════════════════╗\n"
-printf "║                    Z2💜VIBECHECK SETUP                    ║\n"
-printf "╚══════════════════════════════════════════════════════════╝\n"
+printf "              ═══ Z2💜VIBECHECK SETUP ═══                  \n"
 printf "${C_RESET}\n"
 
 printf "${YELLOW}[1/5] Скачивание репозитория...${C_RESET}\n"

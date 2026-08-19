@@ -42,6 +42,15 @@ Z2Vibecheck
 
 ---
 
+## Удаление
+
+```sh
+rm -f /usr/bin/Z2Vibecheck
+rm -rf /opt/Z2Vibecheck
+```
+
+---
+
 ## Структура
 
 ```
